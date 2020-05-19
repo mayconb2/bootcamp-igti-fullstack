@@ -1,0 +1,10 @@
+.justColor {
+    height: 110px;
+    width: 110px;
+    background-color:blue;    
+}
+
+p {
+    margin: 10px auto;
+    text-align: left;
+}

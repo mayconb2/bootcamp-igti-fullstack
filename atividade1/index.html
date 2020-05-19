@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>R (vermelho) :<input type="range" min="0" max="255" value="0" id="rangeRed" onchange="changeRageRed()"/><input type="text" id="textRed" /></p>
+        <p>G (verde) :<input type="range" min="0" max="255" value="0" id="rangeGreen" onchange="changeGreen()" /><input type="text" id="textGreen" /></p>
+        <p>B (azul) :<input type="range" min="0" max="255" value="0" id="rangeBlue" onchange="changeBlue()" /><input type="text" id="textBlue" /></p>
+        <div class="justColor" style="background-color: rgb(0, 0, 0);"></div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
