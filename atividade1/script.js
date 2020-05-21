@@ -6,28 +6,21 @@ let rangeBlue = document.querySelector('#rangeBlue');
 let textBlue = document.querySelector('#textBlue');
 let justColor = document.querySelector('.justColor');
 
-addEventListener('load', ()=> {
+function changeColor() {
+    justColor.style.backgroundColor = `rgb(${rangeRed.value} ,  ${rangeGreen.value} , ${rangeBlue.value})`;
+}
+
+rangeRed.addEventListener('input', () => {
     textRed.value = rangeRed.value
-    textGreen.value = rangeGreen.value
-    textBlue.value = rangeBlue.value
+    changeColor();
 });
 
-function changeColor() {
-    justColor.style.backgroundColor = `rgb(${textRed.value} ,  ${textGreen.value} , ${textBlue.value})`;
-}
-
-
-function changeRageRed() {
-    textRed.value = rangeRed.value
-    changeColor();
-}
-
-function changeGreen() {
+rangeGreen.addEventListener('input', () => {
     textGreen.value = rangeGreen.value
     changeColor();
-}
+});
 
-function changeBlue() {
+rangeBlue.addEventListener('input', () => {
     textBlue.value = rangeBlue.value
     changeColor();
-}
+});
