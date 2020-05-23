@@ -4,7 +4,7 @@ let rangeGreen = document.querySelector('#rangeGreen');
 let textGreen = document.querySelector('#textGreen');
 let rangeBlue = document.querySelector('#rangeBlue');
 let textBlue = document.querySelector('#textBlue');
-let justColor = document.querySelector('.justColor');
+let justColor = document.querySelector('#justColor');
 
 function changeColor() {
     justColor.style.backgroundColor = `rgb(${rangeRed.value} ,  ${rangeGreen.value} , ${rangeBlue.value})`;

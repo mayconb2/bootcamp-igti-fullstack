@@ -1,17 +1,20 @@
-.justColor {
+#justColor {
     height: 110px;
     width: 110px;
-    background-color:blue;    
+    border-radius: 5px;
+    border-left: 150px;
 }
 
-p {
-    margin: 10px auto;
-    text-align: left;
+
+
+.inputText {
     align-items: center;
 }
 
-.textValue {
-    margin-left: 5px;
-    width: 30px;
-    text-align: center;
+.inputRange {
+    width: 40px;
+}
+
+#inputText {
+    align-items: center;
 }

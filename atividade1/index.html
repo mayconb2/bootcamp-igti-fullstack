@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Bootcamp Fullstack - IGTI</title>
 </head>
 <body>
-    <div>
-        <p>R (red) :<input type="text" id="textRed" class="textValue" disabled/></p>
-        <p><input type="range" min="0" max="255" value="0" id="rangeRed" /></p>
+    <div class="container">
+        <p>R (red) :<input type="text" class="inputText" id="textRed" class="textValue" value="0" disabled/></p>
+        <p><input type="range" class="inputRange" min="0" max="255" value="0" id="rangeRed" /></p>
 
 
-        <p>G (green) :<input type="text" id="textGreen" class="textValue" disabled/></p>
-        <input type="range" min="0" max="255" value="0" id="rangeGreen"/></p>
+        <p>G (green) :<input type="text" class="inputText" id="textGreen" class="textValue" value="0" disabled/></p>
+        <input type="range" class="inputRange" min="0" max="255" value="0" id="rangeGreen"/></p>
 
-        <p>B (blue) :<input type="text" id="textBlue" class="textValue" disabled/></p>
-        <p><input type="range" min="0" max="255" value="0" id="rangeBlue"/></p>
+        <p>B (blue) :<input type="text" class="inputText" id="textBlue" class="textValue" value="0" disabled/></p>
+        <p><input type="range" class="inputRange" min="0" max="255" value="0" id="rangeBlue"/></p>
 
-        <div class="justColor" style="background-color: rgb(0, 0, 0);"></div>
+        <div id="justColor" style="background-color: rgb(0, 0, 0);"></div>
     </div>
     <script src="./script.js"></script>
 </body>
