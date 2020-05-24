@@ -3,24 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Bootcamp Fullstack - IGTI</title>
 </head>
 <body>
     <div class="container">
-        <p>R (red) :<input type="text" class="inputText" id="textRed" class="textValue" value="0" disabled/></p>
-        <p><input type="range" class="inputRange" min="0" max="255" value="0" id="rangeRed" /></p>
+        <h1>RGB Selector</h1>
+
+        <p><span id="red">R</span> (red) :</p>
+        <div class="inputs">
+            <input type="range" class="inputRange" min="0" max="255" value="0" id="rangeRed" />
+            <input type="text" class="inputText" id="textRed" class="textValue" value="0" disabled/>
+        </div>
 
 
-        <p>G (green) :<input type="text" class="inputText" id="textGreen" class="textValue" value="0" disabled/></p>
-        <input type="range" class="inputRange" min="0" max="255" value="0" id="rangeGreen"/></p>
+        <p><span id="green">G</span> (green) :</p>
+        <div class="inputs">
+            <input type="range" class="inputRange" min="0" max="255" value="0" id="rangeGreen"/>
+            <input type="text" class="inputText" id="textGreen" class="textValue" value="0" disabled/>
+        </div>
 
-        <p>B (blue) :<input type="text" class="inputText" id="textBlue" class="textValue" value="0" disabled/></p>
-        <p><input type="range" class="inputRange" min="0" max="255" value="0" id="rangeBlue"/></p>
+        <p><span id="blue">B</span> (blue) :</p>
+        <div class="inputs">
+            <input type="range" class="inputRange" min="0" max="255" value="0" id="rangeBlue"/>
+            <input type="text" class="inputText" id="textBlue" class="textValue" value="0" disabled/>
+        </div>
 
-        <div id="justColor" style="background-color: rgb(0, 0, 0);"></div>
+        <div id="justColor" style="background-color: rgb(0, 0, 0);"></div> 
+
+        <footer>Made by Maycon with <span class="heart">&hearts;</span></footer>
     </div>
+
+
     <script src="./script.js"></script>
 </body>
 </html>

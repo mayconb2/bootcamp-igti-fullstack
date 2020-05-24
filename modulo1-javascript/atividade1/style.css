@@ -1,24 +1,74 @@
-#justColor {
-    height: 110px;
-    width: 110px;
-    border-radius: 5px;
-    justify-content: center;
-    margin: auto;
+.container {
+    /* display: block; */
+    margin-top: 50px;
+    padding: 15px;
+    width: 55%;
+    border: 1px solid #999DA0;
+    border-radius: 10px;
 
+}
+
+h1 {
+    margin-top: 0px;
+    text-align: center;
+}
+
+p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#red {
+    color: red;
+    font-weight: bold;
+}
+
+#green{
+    color: green;
+    font-weight: bold;
+}
+
+#blue {
+    color: blue;
+    font-weight: bold;
+}
+
+.inputs {
+    display: flex;
+    align-items: flex-end;
 }
 
 .inputRange {
     text-align: center;
-    width: 40px;
+    width: 50px;
+
 }
 
 .inputText {
+    margin-left: 15px;
     text-align: center;
-    width: 30px;
-    border: 1px solid;
+    width: 100px;
+    
 }
-/* 
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center; */
+
+#justColor {
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    justify-content: center;
+    margin: 15px auto 15px auto ;
+
+}
+
+footer {
+    font-size: 12px;
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(108, 112, 116);
+}
+
+.heart {
+    color: red;
+}
+
