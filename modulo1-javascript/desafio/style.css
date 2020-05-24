@@ -1,11 +1,52 @@
 #input-text {
-    display: flex;
-    flex-direction: column;
-    width: 600px;
+    /* width: 600px; */
 }
 
 #search-button {
-    display: flex;
-    flex-direction: column;
     margin-left: 10px;
+    text-align: center;
 }
+
+#clear-button {
+    margin-left: 10px;
+    text-align: center;
+}
+
+#frm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.person-results {
+    margin-top: 10px;
+    justify-content: space-around;
+    text-align: left;
+}
+
+#person-list {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#person-summary {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.people {
+    align-items: center;
+    display: flex;
+    padding-left: 15px;
+}
+
+.people-info {
+    padding-left: 7px;
+}
+
+img {
+    border-radius: 50%;
+  }

@@ -1,22 +1,22 @@
-const inputForm = document.querySelector('#frm');
+const form = document.querySelector('#frm');
 const inputText = document.querySelector('#input-text');
 const searchButton = document.querySelector('#search-button');
+let filteredPerson = document.querySelector('#filtered-person');
 
 let globalAllPerson = [];
 
-
 window.addEventListener ('load' , () => {
-    
-    inputForm.addEventListener('submit', (event) => {
+
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
     });
 
     fetchFromAPI();
-        
 });
 
-function search() {
-    console.log(globalAllPerson);
+function search(textValue) {
+    
+    renderPerson(textValue);
 }
 
 inputText.addEventListener('keyup', (event) => {
@@ -30,11 +30,8 @@ inputText.addEventListener('keyup', (event) => {
     }
 
     if (event.key == 'Enter' && event.target.value != '') {
-        // search();
-        // console.log(event)
-        console.log(event);
+        search();
     };
-    
 })
 
 async function fetchFromAPI() {
@@ -52,6 +49,42 @@ async function fetchFromAPI() {
             age: dob.age,
             picture: picture.thumbnail
         };
+    });
+}
+
+function renderPerson(textValue) {
+    let personHTML = '';
+    
+    globalAllPerson.map(person => {
+        const {name, gender, age, picture} = person;
+        
+        let peopleHTML = `
+            <div class="people">
+
+                <div class="people-picture">
+                    <img src="${person.picture}">
+                </div>
+
+                <div class="people-info">
+                    ${person.name}, ${person.gender}, ${person.age } years old
+                </div>
+
+            </div>
+        `;
+
+        personHTML += peopleHTML;
 
     });
+
+    filteredPerson.innerHTML = personHTML;
+}
+
+function renderSummary() {
+
+}
+
+function clearResults() {
+    filteredPerson.innerHTML = '';
+    inputText.value = '';
+    inputText.focus();
 }
