@@ -1,0 +1,24 @@
+#justColor {
+    height: 110px;
+    width: 110px;
+    border-radius: 5px;
+    justify-content: center;
+    margin: auto;
+
+}
+
+.inputRange {
+    text-align: center;
+    width: 40px;
+}
+
+.inputText {
+    text-align: center;
+    width: 30px;
+    border: 1px solid;
+}
+/* 
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center; */

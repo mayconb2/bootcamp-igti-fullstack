@@ -1,0 +1,11 @@
+#input-text {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+#search-button {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
