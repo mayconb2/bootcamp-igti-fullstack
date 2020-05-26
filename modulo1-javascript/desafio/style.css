@@ -11,26 +11,34 @@
 #frm {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: space-around;
+    
 }
 
-.person-results {
-    margin-top: 10px;
+#person-results {
+    /* margin-top: 10px;
     justify-content: space-around;
     text-align: left;
+    display:flex; */
+    display: flex;
+    justify-content: space-around;
+    
+
 }
 
 #person-list {
-    border: 1px solid gray;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-right: 1px solid gray;
+    /* border-radius: 10px;  */
+    /* width: 400px; */
+    text-align: left;
+    
 }
 
 #person-summary {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 10px;
-    padding-left: 10%;
-    padding-right: 10%;
+    /* width: 400px; */
+
 }
 
 .people {
@@ -43,6 +51,42 @@
     padding-left: 7px;
 }
 
+.row {
+    margin-top: 15px;
+    
+}
+
+h5 {
+    text-align: initial;
+}
+
+h4 {
+    text-align: center;
+}
+
 img {
     border-radius: 50%;
-  }
+}
+
+#filtered-person {
+    padding-left: 0;
+}
+
+.people {
+    padding-left: 0;
+
+}
+
+#summary-numbers {
+    padding-left: 0;
+}
+
+#clear-button {
+    text-align: center;
+    width: 100px;    
+}
+
+#search-button {
+    text-align: center;
+    width: 100px;    
+}

@@ -3,6 +3,9 @@ const inputText = document.querySelector('#input-text');
 const searchButton = document.querySelector('#search-button');
 const filteredPerson = document.querySelector('#filtered-person');
 const personPummary = document.querySelector('#person-summary');
+const searchResult = document.querySelector('#search-result');
+const searchSummary = document.querySelector('#search-summary');
+const summaryNumbers = document.querySelector('#summary-numbers');
 
 let globalAllPerson = [];
 
@@ -13,6 +16,8 @@ window.addEventListener ('load' , () => {
     });
 
     fetchFromAPI();
+    inputText.focus();
+
 });
 
 async function fetchFromAPI() {
@@ -94,14 +99,13 @@ function renderPerson(textValue) {
         `;
 
         personHTML += peopleHTML;
-
+    
     });
 
     filteredPerson.innerHTML = personHTML;
 }
 
 function renderSummary(textValue) {
-    let summaryHTML = '';
 
     let filteredFromAll = filterArray(textValue);
 
@@ -123,9 +127,17 @@ function renderSummary(textValue) {
         return acc + cur.age;
     },0);
 
-    const averageAges = (sumAges / filteredFromAll.length).toFixed(2);
+    let averageAges = (sumAges / filteredFromAll.length).toFixed(2)
+    
+    if(averageAges == 'NaN') {
+        averageAges = 0;
+    }
+    
+    // (sumAges / filteredFromAll.length).toFixed(2) === NaN ? 0 : (sumAges / filteredFromAll.length).toFixed(2);
+    console.log(averageAges)
+    const totalPerson = sumMale + sumMale;
 
-    personPummary.innerHTML = `
+    summaryNumbers.innerHTML = `
 
         <div>
             Gender Male: <b>${sumMale}</b>
@@ -144,6 +156,11 @@ function renderSummary(textValue) {
         <div>
 
     `;
+
+    searchSummary.innerHTML = `Summary: `
+    searchResult.innerHTML = `${totalPerson} people found: `
+
+
 }
 
 function filterArray(text) {
@@ -158,6 +175,10 @@ function filterArray(text) {
 
 function clearResults() {
     filteredPerson.innerHTML = '';
+    summaryNumbers.innerHTML = '';
+    searchResult.innerHTML = 'No Results';
+    searchSummary.innerHTML = 'No Summary';
     inputText.value = '';
+    searchButton.disabled = true;
     inputText.focus();
 }

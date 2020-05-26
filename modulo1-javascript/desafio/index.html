@@ -11,22 +11,22 @@
 <body>
     <div class="container">
 
-        <h4>Enter a name:</h1>
+        <h4>Search for a name</h1>
         <form id="frm" action="">
-            <input type="text" name="input-text" id="input-text" value="" >
+            <input type="text" name="input-text" placeholder="Type here..." id="input-text" value="" >
             <input type="button" id="search-button" class="waves-effect waves-light btn" value="Search" disabled>
             <input type="button" id="clear-button" class="waves-effect waves-light btn" value="Clear" onclick="clearResults()">
 
         </form>
 
-        <div class="person-results">
-            <div id="person-list">
-                <h5>Search Result:</h2>
-                <div id="filtered-person"></div>
+        <div class="row" id="person-results">
+            <div id="person-list" class="col s6">
+                <h5 id="search-result">No Results</h5>    
+                <div id="filtered-person" class="col s12"></div>
             </div>
-
-            <div id="person-summary">
-                <h5>Summary</h2>
+            <div id="person-summary" class="col s6">
+                <h5 id="search-summary">No Summary</h2>
+                <div id="summary-numbers" class="col s12"></div>
             </div>
         </div>
         
