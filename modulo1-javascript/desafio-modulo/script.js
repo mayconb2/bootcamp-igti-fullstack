@@ -39,19 +39,20 @@ async function fetchFromAPI() {
 }
 
 searchButton.addEventListener('click', () => {
+    //to do = DRY
 
-    let nameToSearch = inputText.value.toLowerCase();
+    let nameToSearch = inputText.value.toLowerCase().trim();
 
     if (inputText.value == '' || inputText.value == null) {
         return;
     }
-    //to do = DRY
     search(nameToSearch)
 
 });
 
 inputText.addEventListener('keyup', (event) => {
-    let nameToSearch = inputText.value.toLowerCase();
+    //to do = DRY
+    let nameToSearch = inputText.value.toLowerCase().trim();
 
     if (event.target.value == '') {
         searchButton.disabled = true;
@@ -62,7 +63,6 @@ inputText.addEventListener('keyup', (event) => {
     }
 
     if (event.key == 'Enter' && event.target.value != '') {
-        //to do = DRY
         search(nameToSearch);
     };
 })
@@ -133,8 +133,7 @@ function renderSummary(textValue) {
         averageAges = 0;
     }
     
-    console.log(averageAges)
-    const totalPerson = sumMale + sumMale;
+    const totalPerson = sumMale + sumFemale;
 
     summaryNumbers.innerHTML = `
 

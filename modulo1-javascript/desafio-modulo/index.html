@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <title>Desafio Módulo 1</title>
+    <title>Name Filter</title>
 </head>
 <body>
     <div class="container">
 
-        <h4>Search for a name</h1>
-        <form id="frm" action="">
-            <input type="text" name="input-text" placeholder="Type here..." id="input-text" value="" >
+        <h4>Do you search for someone?</h1>
+        <form id="frm" autocomplete="off">
+            <input type="text" name="input-text" placeholder="Type a name here..." id="input-text" value="" >
             <input type="button" id="search-button" class="waves-effect waves-light btn" value="Search" disabled>
             <input type="button" id="clear-button" class="waves-effect waves-light btn" value="Clear" onclick="clearResults()">
 
