@@ -133,7 +133,6 @@ function renderSummary(textValue) {
         averageAges = 0;
     }
     
-    // (sumAges / filteredFromAll.length).toFixed(2) === NaN ? 0 : (sumAges / filteredFromAll.length).toFixed(2);
     console.log(averageAges)
     const totalPerson = sumMale + sumMale;
 
