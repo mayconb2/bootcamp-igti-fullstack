@@ -13,7 +13,8 @@ Repositório criado para armazenar as atividades realizadas durante o curso.
 
 ##### Name Filter
 
-[Desafio do Módulo](/modulo1-javascript/desafio-modulo) - **Name Filter**. Este projeto consiste em fazer uma requisição à API do [Random User](https://randomuser.me/) retornando 100 pessoas e gravando o resultado em um array. Com os dados em mãos, deveria ser possível fazer um filtro na lista digitando o nome ou pedaçõ do nome de uma pessoa, trazendo também algumas estatísticas sobre a quantidade de pessoas buscadas, quantidade de homens e mulheres, soma e média da idadade de todos. Pode confereir este projeto [aqui](https://name-filter.surge.sh/)
+[Desafio do Módulo](/modulo1-javascript/desafio-modulo) - **Name Filter**. Este projeto consiste em fazer uma requisição à API do [Random User](https://randomuser.me/) retornando 100 pessoas e gravando o resultado em um array. Com os dados em mãos, deveria ser possível fazer um filtro na lista digitando o nome ou pedaçõ do nome de uma pessoa, trazendo também algumas estatísticas sobre a quantidade de pessoas buscadas, quantidade de homens e mulheres, soma e média da idadade de todos. Pode confereir este projeto clicando [aqui](https://name-filter.surge.sh/).
 
+![name-filter](https://user-images.githubusercontent.com/40521982/82963778-1b4c8100-9f9a-11ea-8d2a-55c4c8b2e3d9.gif)
 
 
