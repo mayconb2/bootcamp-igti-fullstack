@@ -8,7 +8,7 @@ const accountsJson = './accounts/accounts.json';
 const app = express();
 
 app.use(express.json());
-app.use('/account', accountRouter);
+app.use('/account', accountRouter); 
 
 app.get('/', (req, res) => {
     res.send('Hello, world in EXPRESS!');
