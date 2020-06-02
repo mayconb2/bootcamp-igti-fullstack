@@ -97,7 +97,12 @@ router.put('/', (req,res) => {
 
         let acccountIndex = existentsAccounts.accounts.findIndex((account,index) => {
             return accountFromReq.id == account.id;
-       });
+        });
+
+        if (acccountIndex < 0) {
+            res.status(400).send("Conta não localizada");
+            return;
+        }
 
        existentsAccounts.accounts[acccountIndex] = accountFromReq;
 
