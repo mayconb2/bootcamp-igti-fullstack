@@ -120,4 +120,39 @@ router.put('/', (req,res) => {
 
 });
 
+router.delete('/', (req,res) => {
+
+    let accountFromReq = req.body;
+
+    fs.readFile(accountsJson,'utf8', (err, data) => {
+
+        if (err) {
+            res.status(500).send({error: err.message});
+            return;
+        }
+
+        let existentsAccounts = JSON.parse(data);
+
+        let indexToDelete = existentsAccounts.accounts.findIndex(account => {
+            return accountFromReq.id == account.id;
+        });
+
+        if (indexToDelete < 0) {
+            res.status(400).send('Conta não localizada!');
+            return;
+        }
+
+        existentsAccounts.accounts.splice(indexToDelete, 1);
+
+        fs.writeFile(accountsJson, JSON.stringify(existentsAccounts), err => {
+            if (err) {
+                res.status(500).send({error: err});
+                return;
+            }
+
+            res.send('Conta deletada com sucesso!')
+        });
+    });
+});
+
 module.exports = router;
