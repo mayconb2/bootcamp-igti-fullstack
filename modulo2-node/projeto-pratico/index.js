@@ -6,20 +6,20 @@ const estadosJson = './Estados.json';
 async function start() {
 
     console.log('Aplicação Iniciada...');
-    // createFile()
-    // console.log(writeCities(100))
+    // createFiles()
+    // writeCities('1')
 
     // createFile();
 
-    sumCities('AC');
+    // sumCities('AC');
 
-    
+    statesMoreCities();    
 
 
 }
 
 
-async function createFile() {
+async function createFiles() {
 
     try {
 
@@ -28,7 +28,7 @@ async function createFile() {
         
         states.map(async state => {
     
-            await fs.writeFile(`${state.Sigla}.json`, await writeCities(state.ID)) 
+            await fs.writeFile(`${state.Sigla}.json`, await writeCities(state.ID, state.Sigla)) 
             
         });
 
@@ -39,10 +39,11 @@ async function createFile() {
 }
 
 
-async function writeCities(idState) {
+async function writeCities(idState,abrevState) {
 
     try {
 
+        let numCities = 0
         const filteredCity = [];
         const rowCities = await fs.readFile(cidadesJson, 'utf8');
     
@@ -54,6 +55,13 @@ async function writeCities(idState) {
             }
             
         });
+
+        filteredCity.forEach(city =>{
+            numCities++
+        });
+
+        filteredCity.push(JSON.parse(`{"${abrevState}" : ${numCities}}`));
+  
         const filteredCityJson = JSON.stringify(filteredCity);
         return filteredCityJson;
 
@@ -65,19 +73,51 @@ async function writeCities(idState) {
 }
 
 async function sumCities(stateName) {
-    
     const rowState = await fs.readFile(`${stateName}.json`, 'utf8');
-    const state = JSON.parse(rowState);
-
-    let sum = 0;
-
-    state.map(city => {
-        sum += 1;
-    });
-
-    console.log(`A soma das cidades do estado ${stateName} é ${sum}`);
+    const state = await JSON.parse(rowState);
+    console.log(state[state.length-1])
 }
 
+async function abrevStates() {
+    const abrevStates = [];
 
+    const rowState = await fs.readFile(estadosJson, 'utf8');
+    const states = await JSON.parse(rowState);
+
+    const newStates = states.map(state => {
+        const {Sigla} = state;
+        return {
+            Sigla
+        }
+
+    })
+
+    newStates.map(sigla => {
+        abrevStates.push(sigla.Sigla)
+    })
+    
+    const abrevStatesJson = JSON.stringify(abrevStates)
+
+    return abrevStatesJson;
+}
+
+async function statesMoreCities() {
+
+    const allStates = await abrevStates();
+    const allStatesJson = JSON.parse(allStates)
+    const stateCities = [];
+
+    allStatesJson.map(async state => {
+        const cities = await fs.readFile(`${state}.json`,'utf8');
+        const citiesJson = await JSON.parse(cities);
+
+        
+        stateCities.push(citiesJson[citiesJson.length-1])
+    });
+
+    setTimeout(() => stateCities.sort((a,b) => b-a),300)
+
+    setTimeout(() => console.log(stateCities), 1000)
+}
 
 start();
