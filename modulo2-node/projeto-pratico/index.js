@@ -2,35 +2,66 @@ const fs = require('fs').promises
 
 const cidadesJson = './Cidades.json';
 const estadosJson = './Estados.json';
+const statesJson = './states_json'
 
 async function start() {
 
     console.log('Aplicação Iniciada...');
+    
+    // método que cria JSON pra cada estado com as cidades dentro    
     // createFiles()
-    // writeCities('1')
 
-    // createFiles();
+    // método que recebe como parâmetro o UF do estado e retorna quantidade de cidades
+    logQtyCitiesFromState('AC');
 
-    // sumCities('AC');
-
-    // statesLessCities()
+    // método que imprima no console um array com o UF dos cinco estados que mais possuem cidades
     // statesMoreCities();    
+    
+    // método que imprima no console um array com o UF dos cinco estados que menos possuem cidades    
+    // statesLessCities();
+    
+    // método que imprima no console um array com a cidade de maior nome de cada estado
+    // allStatesBiggerCityName();
+    
+    //método que imprima no console um array com a cidade de menor nome de cada estado
+    // allStatesShorterCityName();
 
-    // qtyCitiesFromState('AC');
+    // método que imprima no console a cidade de maior nome entre todos os estados
+    // biggerNameCity()    
+    
+    // método que imprima no console a cidade de menor nome entre todos os estados
+    // shortNameCity()
 
-    // cityBiggerName('AC')
+}
 
-    // cityShorterName('AC');
-    allStatesShorterCityName();
+async function logQtyCitiesFromState(abrevState) {
 
+    try {
+
+        const citiesFile = JSON.parse(await fs.readFile(`./${statesJson}/${abrevState}.json`, "utf-8"));
+        
+        return Promise.all(citiesFile).then(() =>{
+            console.log(citiesFile.length)
+        }).catch((err) => {
+            console.error(err)
+        })
+
+    } catch (err) {
+        console.error(err)
+    }
+    
 }
 
 async function qtyCitiesFromState(abrevState) {
-    const citiesFile = JSON.parse(await fs.readFile(`./${abrevState}.json`, "utf-8"));
-    //debug
-    return citiesFile.length;
-}
+    try {
 
+        const citiesFile = JSON.parse(await fs.readFile(`./${statesJson}/${abrevState}.json`, "utf-8"));
+        return citiesFile.length;
+
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 async function createFiles() {
 
@@ -41,7 +72,7 @@ async function createFiles() {
         
         states.map(async state => {
     
-            await fs.writeFile(`${state.Sigla}.json`, await writeCities(state.ID, state.Sigla)) 
+            await fs.writeFile(`./${statesJson}/${state.Sigla}.json`, await writeCities(state.ID, state.Sigla)) 
             
         });
 
@@ -79,129 +110,247 @@ async function writeCities(idState,abrevState) {
 }
 
 async function abrevStates() {
-    const abrevStates = [];
 
-    const rowState = await fs.readFile(estadosJson, 'utf8');
-    const states = JSON.parse(rowState);
+    try {
 
-    const newStates = states.map(state => {
-        const {Sigla} = state;
-        return {
-            Sigla
-        }
-
-    })
-
-    newStates.map(sigla => {
-        abrevStates.push(sigla.Sigla)
-    })
+        const abrevStates = [];
     
-    const abrevStatesJson = JSON.stringify(abrevStates)
-
-    return abrevStatesJson;
+        const rowState = await fs.readFile(estadosJson, 'utf8');
+        const states = JSON.parse(rowState);
+    
+        const newStates = states.map(state => {
+            const {Sigla} = state;
+            return {
+                Sigla
+            }
+    
+        })
+    
+        newStates.map(sigla => {
+            abrevStates.push(sigla.Sigla)
+        })
+        
+        const abrevStatesJson = JSON.stringify(abrevStates)
+    
+        return abrevStatesJson;
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
 }
 
 async function statesLessCities() {
 
-    const allStates = await abrevStates();
-    const allStatesJson = JSON.parse(allStates)
-    const stateCities = [];
+    try {
 
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
     
-
-    const pushCities = await allStatesJson.map(async state => {
-        const qtyCities = await qtyCitiesFromState(state);
-        stateCities.push({state, qtyCities});
-        stateCities.sort((a,b) => {
-            return a.qtyCities - b.qtyCities
+        
+    
+        const pushCities = await allStatesJson.map(async state => {
+            const qtyCities = await qtyCitiesFromState(state);
+            stateCities.push({state, qtyCities});
+            stateCities.sort((a,b) => {
+                return a.qtyCities - b.qtyCities
+            });
         });
-    });
+    
+        return Promise.all(pushCities).then(() => {
+            console.log(`Os estados com as menores cidades são: 
+            ${stateCities[0].state} - ${stateCities[0].qtyCities} | ${stateCities[1].state} - ${stateCities[1].qtyCities} | ${stateCities[2].state} - ${stateCities[2].qtyCities} | ${stateCities[3].state} - ${stateCities[3].qtyCities} | ${stateCities[4].state} - ${stateCities[4].qtyCities}`);
+        })
 
-    return Promise.all(pushCities).then(() => {
-        console.log(`Os estados com as menores cidades são: 
-        ${stateCities[0].state} - ${stateCities[0].qtyCities} | ${stateCities[1].state} - ${stateCities[1].qtyCities} | ${stateCities[2].state} - ${stateCities[2].qtyCities} | ${stateCities[3].state} - ${stateCities[3].qtyCities} | ${stateCities[4].state} - ${stateCities[4].qtyCities}`);
-    })
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
+
 }
 
 async function statesMoreCities() {
 
-    const allStates = await abrevStates();
-    const allStatesJson = JSON.parse(allStates)
-    const stateCities = [];
+    try {
 
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
     
-
-    const pushCities = await allStatesJson.map(async state => {
-        const qtyCities = await qtyCitiesFromState(state);
-        stateCities.push({state, qtyCities});
-        stateCities.sort((a,b) => {
-            return b.qtyCities - a.qtyCities
+        
+    
+        const pushCities = await allStatesJson.map(async state => {
+            const qtyCities = await qtyCitiesFromState(state);
+            stateCities.push({state, qtyCities});
+            stateCities.sort((a,b) => {
+                return b.qtyCities - a.qtyCities
+            });
         });
-    });
+    
+        return Promise.all(pushCities).then(() => {
+            console.log(`Os estados com as maiores cidades são: 
+            ${stateCities[0].state} - ${stateCities[0].qtyCities} | ${stateCities[1].state} - ${stateCities[1].qtyCities} | ${stateCities[2].state} - ${stateCities[2].qtyCities} | ${stateCities[3].state} - ${stateCities[3].qtyCities} | ${stateCities[4].state} - ${stateCities[4].qtyCities}`);
+        })
 
-    return Promise.all(pushCities).then(() => {
-        console.log(`Os estados com as maiores cidades são: 
-        ${stateCities[0].state} - ${stateCities[0].qtyCities} | ${stateCities[1].state} - ${stateCities[1].qtyCities} | ${stateCities[2].state} - ${stateCities[2].qtyCities} | ${stateCities[3].state} - ${stateCities[3].qtyCities} | ${stateCities[4].state} - ${stateCities[4].qtyCities}`);
-    })
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
 }
 
 async function cityBiggerName(state) {
-    const citiesNames = [];
-
-    const rowCitiesState = await fs.readFile(`./${state}.json`, 'utf8');
-    const citiesState = JSON.parse(rowCitiesState)
     
-    citiesState.map(city => {
-        citiesNames.push(city.Nome)
-    });
+    try {
+
+        const citiesNames = [];
     
-    citiesNames.sort((a,b) => {
-        let al = a.toLowerCase();
-        let bl = b.toLowerCase();
+        const rowCitiesState = await fs.readFile(`./${statesJson}/${state}.json`, 'utf8');
+        const citiesState = JSON.parse(rowCitiesState)
+        
+        citiesState.map(city => {
+            citiesNames.push(city.Nome)
+        });
+        
+        citiesNames.sort((a,b) => {
+            let al = a.toLowerCase();
+            let bl = b.toLowerCase();
+    
+            return bl.length - al.length || al.localeCompare(bl)
+        });
+    
+        return citiesNames[0];
 
-        return bl.length - al.length || al.localeCompare(bl)
-    });
-
-    console.log(citiesNames)
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
 
 }
 
 async function cityShorterName(state) {
-    const citiesNames = [];
 
-    const rowCitiesState = await fs.readFile(`./${state}.json`, 'utf8');
-    const citiesState = JSON.parse(rowCitiesState)
+    try {
+
+        const citiesNames = [];
     
-    citiesState.map(city => {
-        citiesNames.push(city.Nome)
-    });
+        const rowCitiesState = await fs.readFile(`./${statesJson}/${state}.json`, 'utf8');
+        const citiesState = JSON.parse(rowCitiesState)
+        
+        citiesState.map(city => {
+            citiesNames.push(city.Nome)
+        });
+        
+        citiesNames.sort((a,b) => {
+            let al = a.toLowerCase();
+            let bl = b.toLowerCase();
     
-    citiesNames.sort((a,b) => {
-        let al = a.toLowerCase();
-        let bl = b.toLowerCase();
+            return al.length - bl.length || al.localeCompare(bl)
+        });
+    
+        return citiesNames[0];
 
-        return al.length - bl.length || al.localeCompare(bl)
-    });
-
-    console.log(citiesNames)
-
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
 }
 
 async function allStatesShorterCityName() {
-    const allStates = await abrevStates();
-    const allStatesJson = JSON.parse(allStates)
-    const stateCities = [];
+    
+    try {
 
-    const pushCityShorterName = await allStatesJson.map(async state => {
-        const shortNameCity = await cityShorterName(state);
-        stateCities.push({state, shortNameCity});
-    })
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
+    
+        const pushCityShorterName = await allStatesJson.map(async state => {
+            const shortNameCity = await cityShorterName(state);
+            stateCities.push({state, shortNameCity});
+        })
+    
+        return Promise.all(pushCityShorterName).then(() => {
+            console.log(stateCities)
+        });
 
-    return Promisse.all(pushCityShorterName).then(() => {
-        stateCities
-    });
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
 
 }
 
+async function allStatesBiggerCityName() {
+
+    try {
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
+    
+        const pushCityBiggerName = await allStatesJson.map(async state => {
+            const biggerCityName = await cityBiggerName(state);
+            stateCities.push({state, biggerCityName});
+        })
+    
+        return Promise.all(pushCityBiggerName).then(() => {
+            console.log(stateCities)
+        });
+
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
+
+}
+
+
+async function biggerNameCity() {
+
+    try {
+
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
+    
+        const pushCityBiggerName = await allStatesJson.map(async state => {
+            const biggerCityName = await cityBiggerName(state);
+            stateCities.push({state, biggerCityName});
+            
+            stateCities.sort((a,b) => {
+                let al = a.biggerCityName.toLowerCase();
+                let bl = b.biggerCityName.toLowerCase();
+                return bl.length - al.length 
+            });
+        });
+    
+    
+        return Promise.all(pushCityBiggerName,stateCities).then(() => {
+            console.log(stateCities)
+        });
+
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
+
+}
+
+async function shortNameCity() {
+
+    try {
+
+        const allStates = await abrevStates();
+        const allStatesJson = JSON.parse(allStates)
+        const stateCities = [];
+    
+        const pushCityShorterName = await allStatesJson.map(async state => {
+            const shortNameCity = await cityShorterName(state);
+            stateCities.push({state, shortNameCity});
+            stateCities.sort((a,b) => {
+                let al = a.shortNameCity.toLowerCase();
+                let bl = b.shortNameCity.toLowerCase();
+                return al.length - bl.length 
+            });
+        })
+    
+        return Promise.all(pushCityShorterName).then(() => {
+            console.log(stateCities)
+        });
+
+    } catch (err) {
+        console.error('Erro: ', err)
+    }
+}
 
 start();
