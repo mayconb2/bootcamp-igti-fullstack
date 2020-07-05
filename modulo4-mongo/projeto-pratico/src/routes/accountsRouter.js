@@ -1,21 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const accountModel = require('./../models/account.js')
+const accountController = require('./../controller/accountController.js')
 
+const {getAllAccounts, deposit, draw, getBalanceFromAccount, deleteAccount} = accountController
 
-router.get('/', async (req, res) => {
-    // res.send('Hit the account route')
+router.get('/', getAllAccounts)
 
-    try {
+router.put('/deposit', deposit)
 
-        const accounts = await accountModel.find()
-        res.send(accounts)
+router.put('/draw', draw)
 
-    } catch (error) {
-        res.status(500).send(Error)
-        console.log(`Error to find accounts: ${error}`)
-    }
+router.get('/getBalanceFromAccount', getBalanceFromAccount)
 
-})
+router.delete('/deleteAccount', deleteAccount)
+
 
 module.exports = router
